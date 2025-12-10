@@ -66,28 +66,115 @@ Incluye autenticación (login) y permite:
 ---
 
 ## 📂 Estructura principal del proyecto
-app/
-│── Http/
-│   ├── Controllers/
-│   │   ├── Admin/
-│   │   └── ...
+portafolio-personal/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── PortfolioController.php
+│   │   │   ├── Admin/
+│   │   │   │   ├── AdminController.php
+│   │   │   │   ├── ProfileController.php
+│   │   │   │   ├── SkillController.php
+│   │   │   │   └── ProjectController.php
+│   │   │   └── Auth/              # Controladores Breeze
+│   │   ├── Middleware/
+│   │   └── Kernel.php
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── Profile.php
+│   │   ├── Skill.php
+│   │   └── Project.php
+│   └── Providers/
+│       └── AppServiceProvider.php
 │
-database/
-│── migrations/
-│── seeders/
-│   ├── AdminUserSeeder.php
+├── bootstrap/
+│   └── app.php
 │
-public/
-│── storage → imágenes accesibles públicamente
+├── config/
+│   ├── app.php
+│   ├── auth.php
+│   ├── database.php
+│   └── filesystems.php
 │
-resources/
-│── views/
-│   ├── admin/
-│   ├── portfolio/
-│   └── layouts/
+├── database/
+│   ├── migrations/
+│   │   ├── 0001_01_01_000000_create_users_table.php
+│   │   ├── 0001_01_01_000001_create_cache_table.php
+│   │   ├── 0001_01_01_000002_create_jobs_table.php
+│   │   ├── 20xx_xx_xx_xxxxxx_create_profiles_table.php
+│   │   ├── 20xx_xx_xx_xxxxxx_create_skills_table.php
+│   │   └── 20xx_xx_xx_xxxxxx_create_projects_table.php
+│   └── seeders/
+│       ├── DatabaseSeeder.php
+│       ├── AdminUserSeeder.php
+│       ├── SkillSeeder.php        # (opcional, si los creaste)
+│       └── ProjectSeeder.php      # (opcional)
 │
-routes/
-│── web.php
+├── public/
+│   ├── index.php
+│   ├── favicon.ico
+│   ├── build/                     # Archivos generados por Vite (si los tienes)
+│   └── storage -> ../storage/app/public   # enlace simbólico (php artisan storage:link)
+│
+├── resources/
+│   ├── css/
+│   │   └── app.css
+│   ├── js/
+│   │   └── app.js
+│   └── views/
+│       ├── layouts/
+│       │   ├── app.blade.php      # Layout principal auth (Breeze)
+│       │   ├── guest.blade.php    # Layout para login/registro
+│       │   └── admin.blade.php    # Layout del panel de administración
+│       │
+│       ├── portfolio/
+│       │   └── index.blade.php    # Página pública del portafolio (/)
+│       │
+│       ├── admin/
+│       │   ├── dashboard.blade.php
+│       │   ├── profile/
+│       │   │   └── edit.blade.php
+│       │   ├── skills/
+│       │   │   ├── index.blade.php
+│       │   │   ├── create.blade.php
+│       │   │   └── edit.blade.php
+│       │   └── projects/
+│       │       ├── index.blade.php
+│       │       ├── create.blade.php
+│       │       └── edit.blade.php
+│       │
+│       └── auth/                  # Vistas de autenticación Breeze
+│           ├── login.blade.php
+│           ├── register.blade.php
+│           ├── forgot-password.blade.php
+│           ├── reset-password.blade.php
+│           ├── verify-email.blade.php
+│           └── layouts/partials según Breeze
+│
+├── routes/
+│   ├── web.php        # Rutas públicas + admin + dashboard redirect
+│   └── auth.php       # Rutas generadas por Breeze (login, register, etc.)
+│
+├── storage/
+│   ├── app/
+│   │   └── public/
+│   │       ├── profile_photos/    # Fotos de perfil
+│   │       └── project_images/    # (si decides usar imágenes por proyecto)
+│   ├── framework/
+│   └── logs/
+│
+├── tests/
+│   ├── Feature/
+│   └── Unit/
+│
+├── .env
+├── .env.example
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── vite.config.js
+└── README.md
 
 ---
 

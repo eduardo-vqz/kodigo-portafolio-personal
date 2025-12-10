@@ -179,38 +179,74 @@ portafolio-personal/
 ```
 ---
 
-## ⚙️ Instalación del proyecto
+## 🚀 Instalación del proyecto
 
 ### 1️⃣ Clonar el repositorio
+```bash
 git clone https://github.com/usuario/portafolio-personal.git
 cd portafolio-personal
+```
 
 ### 2️⃣ Instalar dependencias PHP
+```bash
 composer install
+```
 
-### 3️⃣ Instalar dependencias frontend
-npm install
-npm run build
-
-### 4️⃣ Configurar .env
+### 3️⃣ Configurar archivo .env
+```bash
 cp .env.example .env
+```
 
 Editar variables:
-DB_DATABASE=tu_base  
-DB_USERNAME=root  
+```
+DB_DATABASE=tu_base
+DB_USERNAME=root
 DB_PASSWORD=
+```
 
-### 5️⃣ Generar APP KEY
+### 4️⃣ Generar APP_KEY
+```bash
 php artisan key:generate
+```
 
-### 6️⃣ Migrar base de datos + Seeders
+### 5️⃣ Migrar base de datos + Seeders
+```bash
 php artisan migrate --seed
+```
 
-### 7️⃣ Crear enlace simbólico para imágenes
+> Usuario administrador por defecto  
+> Email: admin@admin.com  
+> Password: admin123456  
+
+### 6️⃣ Crear enlace simbólico para imágenes
+```bash
 php artisan storage:link
+```
 
-### 8️⃣ Iniciar servidor
+### 7️⃣ Iniciar servidor Laravel
+```bash
 php artisan serve
+```
+
+---
+
+## ⚡ Configuración Frontend (Vite)
+
+### 📦 Instalar dependencias de Node
+```bash
+npm install
+```
+
+### 🚀 Iniciar Vite en modo desarrollo  
+> ⚠️ **Obligatorio para que los estilos y scripts funcionen.**
+```bash
+npm run dev
+```
+
+### 🏗️ Compilar para producción (opcional)
+```bash
+npm run build
+```
 
 ---
 

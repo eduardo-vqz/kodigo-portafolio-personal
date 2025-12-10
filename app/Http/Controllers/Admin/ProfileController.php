@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
@@ -17,24 +18,41 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name'   => 'required|string|max:255',
-            'title'  => 'required|string|max:255',
-            'bio'    => 'required',
-            'email'  => 'required|email',
-            'github' => 'nullable|url',
-            'linkedin' => 'nullable|url',
+            'name'     => 'required|string|max:255',
+            'title'    => 'nullable|string|max:255',
+            'bio'      => 'nullable|string',
+            'email'    => 'required|email|max:255',
+            'github'   => 'nullable|url|max:255',
+            'linkedin' => 'nullable|url|max:255',
+            'photo'    => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        $profile = Profile::first();
+        $profile = Profile::first() ?? new Profile();
 
-        if (!$profile) {
-            $profile = new Profile();
+        $profile->fill($request->only([
+            'name',
+            'title',
+            'bio',
+            'email',
+            'github',
+            'linkedin',
+        ]));
+
+        if ($request->hasFile('photo')) {
+            // Borrar foto anterior si existe
+            if ($profile->photo && Storage::disk('public')->exists($profile->photo)) {
+                Storage::disk('public')->delete($profile->photo);
+            }
+
+            // Guardar nueva foto en storage/app/public/profile_photos
+            $path = $request->file('photo')->store('profile_photos', 'public');
+            $profile->photo = $path;
         }
 
-        $profile->fill($request->only('name','title','bio','email','github','linkedin'));
         $profile->save();
 
-        return redirect()->route('admin.profile.edit')
-                         ->with('success', 'Perfil actualizado correctamente.');
+        return redirect()
+            ->route('admin.profile.edit')
+            ->with('success', 'Perfil actualizado correctamente.');
     }
 }

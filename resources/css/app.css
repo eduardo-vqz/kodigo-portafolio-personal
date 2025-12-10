@@ -94,4 +94,7 @@
 .auth-card {
     width: 100%;
     max-width: 420px;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2.5rem rgba(15, 23, 42, 0.15);
 }
+

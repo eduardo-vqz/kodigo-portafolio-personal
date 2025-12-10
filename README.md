@@ -66,6 +66,7 @@ Incluye autenticación (login) y permite:
 ---
 
 ## 📂 Estructura principal del proyecto
+```text
 portafolio-personal/
 ├── app/
 │   ├── Http/
@@ -149,17 +150,17 @@ portafolio-personal/
 │           ├── forgot-password.blade.php
 │           ├── reset-password.blade.php
 │           ├── verify-email.blade.php
-│           └── layouts/partials según Breeze
+│           └── layouts/partials ...
 │
 ├── routes/
 │   ├── web.php        # Rutas públicas + admin + dashboard redirect
-│   └── auth.php       # Rutas generadas por Breeze (login, register, etc.)
+│   └── auth.php       # Rutas generadas por Breeze
 │
 ├── storage/
 │   ├── app/
 │   │   └── public/
-│   │       ├── profile_photos/    # Fotos de perfil
-│   │       └── project_images/    # (si decides usar imágenes por proyecto)
+│   │       ├── profile_photos/
+│   │       └── project_images/
 │   ├── framework/
 │   └── logs/
 │
@@ -175,7 +176,7 @@ portafolio-personal/
 ├── package.json
 ├── vite.config.js
 └── README.md
-
+```
 ---
 
 ## ⚙️ Instalación del proyecto

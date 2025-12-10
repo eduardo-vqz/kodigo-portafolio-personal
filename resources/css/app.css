@@ -1,8 +1,97 @@
-
-
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-/* Estilos personalizados opcionales */
-body {
-    background-color: #f8f9fa;
+/* Fondo general suave */
+.main-bg {
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 40%, #f8fafc 100%);
+}
+
+/* Hero */
+.hero-section {
+    min-height: 70vh;
+    padding: 4rem 0;
+    color: #fff;
+    background: radial-gradient(circle at top left, #0d6efd 0, #020617 55%);
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.hero-text {
+    font-size: 0.98rem;
+}
+
+/* Avatar por defecto */
+.hero-avatar {
+    width: 220px;
+    height: 220px;
+    background: #0d6efd;
+    color: #fff;
+    font-size: 4rem;
+}
+
+.hero-avatar-text {
+    font-weight: 700;
+}
+
+/* Foto de perfil */
+.hero-photo {
+    max-width: 220px;
+}
+
+/* Secciones */
+.section-padding {
+    padding: 4rem 0;
+}
+
+.section-alt {
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.section-subtitle {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+/* Tarjetas de habilidades */
+.skill-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(15, 23, 42, .15);
+}
+
+.skill-stars {
+    color: #ffc107;
+    font-size: 0.9rem;
+}
+
+/* Tarjetas de proyectos */
+.project-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .75rem 1.5rem rgba(15, 23, 42, .18);
+}
+
+/* Tarjeta de auth */
+.auth-card {
+    width: 100%;
+    max-width: 420px;
 }

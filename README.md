@@ -1,59 +1,166 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌐 Portafolio Personal — Panel de Administración en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es un **portafolio profesional dinámico** construido con **Laravel 12**, que permite mostrar información personal, proyectos, habilidades y una biografía pública.  
+Incluye además un **panel de administración seguro**, desde el cual el usuario puede gestionar todo el contenido del sitio.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌍 Accesos principales del sistema
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🔹 Sitio público (portafolio)
+http://localhost:8000/
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔸 Panel de administración
 
-## Learning Laravel
+#### Login:
+http://localhost:8000/login
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+#### Dashboard:
+http://localhost:8000/admin
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Secciones del panel:
+- /admin/profile → Editar perfil  
+- /admin/skills → Listado de habilidades  
+- /admin/skills/create → Crear habilidad  
+- /admin/projects → Listado de proyectos  
+- /admin/projects/create → Crear proyecto  
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Características principales
 
-### Premium Partners
+### 🖥️ Sitio Público
+- Presentación con nombre, título, foto y biografía.
+- Habilidades organizadas por categorías.
+- Proyectos con imagen, descripción, tecnologías y enlaces.
+- Sección de **proyectos destacados**.
+- Diseño responsivo con Bootstrap 5.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 🔐 Panel de Administración
+Incluye autenticación (login) y permite:
+- Gestionar el perfil del usuario.
+- CRUD de habilidades.
+- CRUD de proyectos.
+- Subida de imágenes.
+- Destacar proyectos.
+- Panel moderno y responsive.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🛠️ Tecnologías utilizadas
+### Backend
+- Laravel 12  
+- PHP 8.2  
+- MySQL  
 
-## Code of Conduct
+### Frontend
+- Bootstrap 5.3  
+- Blade Templates  
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Otros
+- Laravel Breeze  
+- Composer  
+- NPM & Vite  
+- Storage público para imágenes  
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📂 Estructura principal del proyecto
+app/
+│── Http/
+│   ├── Controllers/
+│   │   ├── Admin/
+│   │   └── ...
+│
+database/
+│── migrations/
+│── seeders/
+│   ├── AdminUserSeeder.php
+│
+public/
+│── storage → imágenes accesibles públicamente
+│
+resources/
+│── views/
+│   ├── admin/
+│   ├── portfolio/
+│   └── layouts/
+│
+routes/
+│── web.php
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚙️ Instalación del proyecto
+
+### 1️⃣ Clonar el repositorio
+git clone https://github.com/usuario/portafolio-personal.git
+cd portafolio-personal
+
+### 2️⃣ Instalar dependencias PHP
+composer install
+
+### 3️⃣ Instalar dependencias frontend
+npm install
+npm run build
+
+### 4️⃣ Configurar .env
+cp .env.example .env
+
+Editar variables:
+DB_DATABASE=tu_base  
+DB_USERNAME=root  
+DB_PASSWORD=
+
+### 5️⃣ Generar APP KEY
+php artisan key:generate
+
+### 6️⃣ Migrar base de datos + Seeders
+php artisan migrate --seed
+
+### 7️⃣ Crear enlace simbólico para imágenes
+php artisan storage:link
+
+### 8️⃣ Iniciar servidor
+php artisan serve
+
+---
+
+## 👤 Usuario administrador por defecto
+Email: admin@admin.com  
+Password: admin123456  
+
+---
+
+## ✨ Funcionalidades del Panel
+
+### Perfil
+- Subida de fotografía  
+- Editar nombre, correo, título profesional  
+- Biografía  
+- Enlaces profesionales  
+
+### Habilidades
+- Crear categorías  
+- Registrar habilidades  
+- Editar & Eliminar  
+
+### Proyectos
+- Subida de imagen  
+- Tecnologías usadas  
+- Enlaces (GitHub/Demo)  
+- Marcar como destacado  
+- CRUD completo  
+
+---
+
+## 📤 Despliegue en producción
+composer install --optimize-autoloader --no-dev  
+npm run build  
+php artisan migrate --force  
+php artisan config:cache  
+php artisan route:cache  
+php artisan storage:link  
+
+---
+

@@ -5,13 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
     public function index()
     {
         $projects = Project::orderByDesc('created_at')->get();
+
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -22,26 +22,25 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required',
-            'technologies'=> 'nullable|string|max:255',
-            'github_url'  => 'nullable|url',
-            'demo_url'    => 'nullable|url',
-            'project_date'=> 'nullable|date',
-            'is_featured' => 'nullable|boolean',
+        $validated = $request->validate([
+            'title'        => 'required|string|max:255',
+            'description'  => 'required|string',
+            'technologies' => 'nullable|string|max:255',
+            'github_url'   => 'nullable|url|max:255',
+            'demo_url'     => 'nullable|url|max:255',
+            'project_date' => 'nullable|date',
+            'image'        => 'nullable|string|max:255', // si no estás subiendo imagen aún
+            'is_featured'  => 'nullable|boolean',
         ]);
 
-        $data = $request->only(
-            'title','description','technologies','github_url','demo_url','project_date'
-        );
-        $data['slug'] = Str::slug($request->title);
-        $data['is_featured'] = $request->has('is_featured');
+        // Los checkbox solo llegan si están marcados:
+        $validated['is_featured'] = $request->boolean('is_featured');
 
-        Project::create($data);
+        Project::create($validated);
 
-        return redirect()->route('admin.projects.index')
-                         ->with('success', 'Proyecto creado correctamente.');
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Proyecto creado correctamente.');
     }
 
     public function edit(Project $project)
@@ -51,33 +50,32 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
-        $request->validate([
-            'title'       => 'required|string|max:255',
-            'description' => 'required',
-            'technologies'=> 'nullable|string|max:255',
-            'github_url'  => 'nullable|url',
-            'demo_url'    => 'nullable|url',
-            'project_date'=> 'nullable|date',
-            'is_featured' => 'nullable|boolean',
+        $validated = $request->validate([
+            'title'        => 'required|string|max:255',
+            'description'  => 'required|string',
+            'technologies' => 'nullable|string|max:255',
+            'github_url'   => 'nullable|url|max:255',
+            'demo_url'     => 'nullable|url|max:255',
+            'project_date' => 'nullable|date',
+            'image'        => 'nullable|string|max:255',
+            'is_featured'  => 'nullable|boolean',
         ]);
 
-        $data = $request->only(
-            'title','description','technologies','github_url','demo_url','project_date'
-        );
-        $data['slug'] = Str::slug($request->title);
-        $data['is_featured'] = $request->has('is_featured');
+        $validated['is_featured'] = $request->boolean('is_featured');
 
-        $project->update($data);
+        $project->update($validated);
 
-        return redirect()->route('admin.projects.index')
-                         ->with('success', 'Proyecto actualizado.');
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Proyecto actualizado correctamente.');
     }
 
     public function destroy(Project $project)
     {
         $project->delete();
 
-        return redirect()->route('admin.projects.index')
-                         ->with('success', 'Proyecto eliminado.');
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Proyecto eliminado correctamente.');
     }
 }
